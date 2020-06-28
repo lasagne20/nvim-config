@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='scp://pi@192.168.1.13//'
+let g:netrw_dirhist_9='scp://pi@192.168.1.13//home/pi/testapp/'
+let g:netrw_dirhist_8='scp://pi@192.168.1.13//home/pi/'
+let g:netrw_dirhist_7='scp://pi@192.168.1.13//home/'
+let g:netrw_dirhist_6='scp://pi@192.168.1.13//'
+let g:netrw_dirhist_5='scp://pi@192.168.1.13//home/pi/testapp/'
+let g:netrw_dirhist_4='scp://pi@192.168.1.13//home/pi/Documents/'
+let g:netrw_dirhist_3='scp://pi@192.168.1.13//home/pi/'
+let g:netrw_dirhist_2='scp://pi@192.168.1.13//home/'
+let g:netrw_dirhist_1='scp://pi@192.168.1.13//'
