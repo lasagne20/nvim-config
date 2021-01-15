@@ -21,6 +21,9 @@ set wrap
 set linebreak
 
 
+" for the table
+nmap t :TableModeRealign<CR>:TableModeEnable<CR>
+
 " auto-complete with <Tab> in command mode
 set wildmenu
 set wildmode=longest,full
@@ -172,3 +175,39 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  " Required:
+  set runtimepath+=/home/lasagne/.config/nvim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('/home/lasagne/.config/nvim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'dhruvasagar/vim-table-mode'
+
+" You can specify revision/branch/tag.
+NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
