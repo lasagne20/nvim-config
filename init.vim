@@ -176,14 +176,17 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
 "NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  " Required:
-  set runtimepath+=/home/lasagne/.config/nvim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
 " Required:
-call neobundle#begin(expand('/home/lasagne/.config/nvim/bundle'))
+set runtimepath+=/home/leo/.config/nvim/bundle/neobundle.vim/
+
+" Required:
+call neobundle#begin(expand('/home/leo/.config/nvim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -195,7 +198,6 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'dhruvasagar/vim-table-mode'
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -210,4 +212,6 @@ filetype plugin indent on
 " this will conveniently prompt you to install them.
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
+
+
 
