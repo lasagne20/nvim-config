@@ -21,6 +21,7 @@ set wrap
 set linebreak
 
 
+
 " for the table
 nmap t :TableModeRealign<CR>:TableModeEnable<CR>
 
@@ -36,12 +37,27 @@ nmap U <C-r>
 set background=dark
 
 call plug#begin('~/.vim/plugged')
+  Plug 'jacoborus/tender.vim'
+  Plug 'arcticicestudio/nord-vim'
   Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+  Plug 'dhruvasagar/vim-table-mode'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'davidhalter/jedi-vim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdtree'
-  Plug 'davidhalter/jedi-vim'
   Plug 'majutsushi/tagbar'
+  Plug 'kalekundert/vim-coiled-snake'
+  Plug 'jeetsukumaran/vim-pythonsense'
+  Plug 'psf/black', { 'branch': 'stable' }
+  Plug 'fisadev/vim-isort'
+  Plug 'flebel/vim-mypy', { 'for': 'python', 'branch': 'bugfix/fast_parser_is_default_and_only_parser' }
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'theHamsta/nvim-dap-virtual-text'
+  Plug 'mfussenegger/nvim-dap-python'
+
 call plug#end()
+let g:jedi#completions_enabled = 0
 
 nmap <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -197,7 +213,22 @@ NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'vim-flake8'
+
+"Black auto run
+autocmd BufWritePost *.py call black#Black()
+
+" Flake8 config
+let g:flake8_show_in_file=1
+nnoremap <C-K> :call flake8#Flake8()<cr>
+autocmd BufWritePost *.py call flake8#Flake8ShowError()
+
+" isort mapping for import
+autocmd BufWritePost *.py Isort
+
+" to have typing check
+let g:syntastic_python_checkers=['mypy']
+
 
 " You can specify revision/branch/tag.
 NeoBundle 'Shougo/vimshell', { 'rev' : '3787e5' }
@@ -213,5 +244,23 @@ filetype plugin indent on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------
 
+" debugger
+lua require('dap-python').setup('/bin/python3')
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
 
+
+
+if (has("termguicolors"))
+     set termguicolors
+ endif
+syntax enable
+colorscheme tender
 
